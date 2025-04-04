@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>New User</title>
+</head>
+<body>
+
+<!--эта Форма будет отправляться методом ПОСТ-->
+<!--фторой атрибуд ЭКШН на какой адрес эта форма будет обращаться-->
+<!--Далее мы обращаемся к пустому объекту, которого заранее положили в модель-->
+<form th:method="POST" th:action="@{/users}" th:object="${user}">
+
+  <!--указываем id=name поля-->
+  <label for="name">Enter name: </label>
+  <!--цепляем соотвествующее поле из класса Юзер-->
+  <!--id этому полю нужен, чтобы мы могли дать ему лэйбл-->
+  <input type="text" th:field="*{name}" id="name"/>
+  <br/>
+  <!--кнопка при нажатии на которую мы отправим данные с этой формы ПОСТ запросом на адрес /users-->
+  <input type="submit" value="Create!"/>
+
+</form>
+
+</body>
+</html>

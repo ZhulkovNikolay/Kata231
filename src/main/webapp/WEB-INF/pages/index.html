@@ -1,10 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Все юзеры</title>
 </head>
 <body>
+
+<!-- внутри этого тэга див, внутри переменной юзер
+будет лежать каждый из людей коллекции юзерс  -->
+<div th:each="user: ${users}">
+    <!-- получаем ИД каждого человека, кладем во временную переменную id и здесь же эта переменная используется -->
+    <a th:href="@{/users/{id}(id=${user.getId()})}" th:text="${user.getName()}">someUser</a> <!-- на место someUser подставится user.getName() -->
+
+
+</div>
 
 </body>
 </html>
