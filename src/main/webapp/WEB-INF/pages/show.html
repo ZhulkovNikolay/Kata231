@@ -9,5 +9,13 @@
 <p th:text="${user.getName()}">VALUE</p>
 <p th:text="${user.getId()}">VALUE</p>
 
+<!--id получим из модели-->
+<!--при нажатии на эту кнопку перейдем на страницу редактивраования этого человека-->
+<a th:href="@{/users/{id}/edit(id=${user.getId()})}">Edit</a>
+<!--кнопка удаления-->
+<form th:method="DELETE" th:action="@{/users/{id}(id=${user.getId()})}">
+    <!--в этой форме не будет полей. А только 1 кнопка-->
+    <input type="submit" value="Delete"/>
+</form>
 </body>
 </html>

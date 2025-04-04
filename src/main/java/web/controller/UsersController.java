@@ -62,4 +62,29 @@ public class UsersController {
         return "redirect:/users";
     }
 
+    //чтобы редактировать человека, нам надо подцепить его из модели
+    //таким образом поля для редактирвоания не будут пустыми
+    //они будут заранее заполненными этим человеком
+    //Этот метод контроллера СОЗДАЕТ ФОРМУ редактирования
+    @GetMapping("/{id}/edit")
+    public String edit(Model model, @PathVariable("id") int id) {
+        model.addAttribute("user", userDaoImpl.show(id));
+        return "edit";
+    }
+
+    //Этот метод контроллера ПРИНИМАЕТ ДАННЫЕ из формы редактирования
+    //принмиает объект Юзер из формы и сразу кладет в модель
+    //так же нам нужно принять значение ИД из адреса
+    @PatchMapping("/{id}")
+    public String update(@ModelAttribute("user") User user, @PathVariable("id") int id) {
+        userDaoImpl.update(id, user);
+        return "redirect:/users";
+    }
+
+    @DeleteMapping("/{id}")
+    public String delete(@PathVariable("id") int id) {
+        userDaoImpl.delete(id);
+        return "redirect:/users";
+    }
+
 }

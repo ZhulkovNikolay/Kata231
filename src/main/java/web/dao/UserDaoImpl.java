@@ -36,4 +36,16 @@ public class UserDaoImpl implements UserDao {
         users.add(user);
     }
 
+    //принимает ИД старого человека
+    //и принимает полностью нового отредактирвоанного человека
+    //заменяет старого на нвого
+    public void update(int id, User user) {
+        User userToBeUpdated = show(id);
+        userToBeUpdated.setName(user.getName());
+    }
+
+    public void delete(int id) {
+        users.removeIf(p -> p.getId() == id);
+    }
+
 }
